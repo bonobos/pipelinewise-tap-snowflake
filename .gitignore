@@ -8,6 +8,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 .virtualenvs
+.python-version
 *.egg-info/
 *__pycache__/
 *~
