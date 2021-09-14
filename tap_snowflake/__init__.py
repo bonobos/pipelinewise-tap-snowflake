@@ -252,6 +252,13 @@ def discover_catalog(snowflake_conn, config, select_all=False):
             if select_all:
                 md_map = metadata.write(md_map, (), 'replication-method', 'FULL_TABLE')
 
+            # check config to see if there was optional rolling-lookback defined, inject into catalog if so
+            full_table_name = f'{catalog}-{table_schema}-{table_name}'.upper()
+            rolling = config.get('rolling-lookback')
+            if rolling and full_table_name in rolling:
+                rolling_table_meta = rolling.get(full_table_name)
+                md_map = metadata.write(md_map, (), 'rolling-lookback', rolling_table_meta)
+
             # check config to see if there was optional metadata defined already
             full_table_name = f'{catalog}.{table_schema}.{table_name}'.upper()
             if config_meta and full_table_name in config_meta:
