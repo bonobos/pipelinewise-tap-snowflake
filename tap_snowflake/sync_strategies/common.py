@@ -156,7 +156,7 @@ def generate_filter_sql(catalog_entry, bookmark_value):
             raise Exception('Lookback rolling window not supported for INCREMENTAL sync')
         replication_key = stream_metadata.get('replication-key')
         if replication_key and bookmark_value:
-            filter_sql += f' WHERE "{replication_key}" >= \'{bookmark_value}\' ORDER BY "{replication_key}" ASC'
+            filter_sql += f' WHERE "{replication_key}" > \'{bookmark_value}\' ORDER BY "{replication_key}" ASC'
         elif replication_key:
             filter_sql += f' ORDER BY "{replication_key}" ASC'
 
