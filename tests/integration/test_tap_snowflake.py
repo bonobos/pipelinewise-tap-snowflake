@@ -474,7 +474,7 @@ class TestTypeMapping(unittest.TestCase):
         catalog_entry = catalog.streams[0]
         columns = list(catalog_entry.schema.properties.keys())
         select_sql = common.generate_sql_query(catalog_entry, columns, bookmark_value='ABC')
-        assert select_sql == f"""SELECT "C_PK","C_INT" FROM "{DB_NAME}"."{SCHEMA_NAME}"."EMPTY_TABLE_1" WHERE "REP_KEY" >= 'ABC' ORDER BY "REP_KEY" ASC"""
+        assert select_sql == f"""SELECT "C_PK","C_INT" FROM "{DB_NAME}"."{SCHEMA_NAME}"."EMPTY_TABLE_1" WHERE "REP_KEY" > 'ABC' ORDER BY "REP_KEY" ASC"""
 
 
 class TestSelectsAppropriateColumns(unittest.TestCase):
