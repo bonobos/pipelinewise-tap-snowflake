@@ -29,11 +29,10 @@ jobs:
       - checkout
       - run: 
           name: install s3pypi
-          command: sudo pip install s3pypi
+          command: sudo pip install s3pypi==0.11.0 markupsafe==2.0.1
       - run:
-          name: Deploy services
-          command: |
-            s3pypi --bucket deg-shared-services-pypi-us-east-1 --private --secret ${S3PYPI_SECRET}
+          name: Deploy package
+          command: make deploy_package S3PYPI_SECRET=${S3PYPI_SECRET}
           
 workflows:
     version: 2
