@@ -136,6 +136,24 @@ Additionally, the full table sync can be configured to use a look back window to
    }
 ```
 
+**Important Note** 
+
+In your `properties.json`, make sure to add the following key/value pairs ("selected": true, "replication-method": "FULL_TABLE") to the `metadata` node which contains your full database name within the `metadata` array.
+
+For example:
+
+```
+   "metadata": [
+      {
+        "metadata": {
+          "database-name": YOUR_DATABASE_NAME,
+          "selected": true,
+          "replication-method": "FULL_TABLE"
+        }
+      }     
+   ]
+```
+
 ### Incremental
 
 Incremental replication works in conjunction with a state file to only extract
